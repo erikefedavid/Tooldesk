@@ -54,25 +54,14 @@ export default function Hero({ searchQuery, setSearchQuery, onSelectTask }: Hero
       {/* Aligned 1:1 with Navbar, Category Pills, and Catalog (max-w-7xl px-4 sm:px-6 lg:px-8) */}
       <div className="mx-auto max-w-7xl w-full px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-12 items-center">
-          {/* Mobile: 3D Orb appears first (order-1) as a compact brand emblem.
-              Desktop: Giant 3D Purple Particle Sphere in right column (order-2 lg:col-span-6) */}
-          <motion.div
-            initial={{ opacity: 0, scale: 0.9 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.8, delay: 0.15 }}
-            className="order-1 lg:order-2 lg:col-span-6 w-full flex items-center justify-center overflow-visible"
-          >
-            <CasberryParticles />
-          </motion.div>
-
-          {/* Left Column (Desktop) / Second (Mobile): Headlines & Task Search (order-2 lg:order-1) */}
-          <div className="order-2 lg:order-1 lg:col-span-6 flex flex-col justify-center text-left z-10 py-1 sm:py-3">
-            {/* Working Tagline Badge */}
+          {/* Left Column: Headlines & Task Search (Desktop left, mobile full width) */}
+          <div className="lg:col-span-6 flex flex-col justify-center text-left z-10 py-1 sm:py-3">
+            {/* Working Tagline Badge (Hidden on mobile, cleanly visible on md/lg) */}
             <motion.div
               initial={{ opacity: 0, y: -10 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5 }}
-              className="inline-flex items-center gap-2 rounded-full border border-border bg-surface px-3.5 py-1.5 text-xs font-semibold text-muted shadow-2xs backdrop-blur-sm mb-4 sm:mb-6 w-fit"
+              className="hidden md:inline-flex items-center gap-2 rounded-full border border-border bg-surface px-3.5 py-1.5 text-xs font-semibold text-muted shadow-2xs backdrop-blur-sm mb-4 sm:mb-6 w-fit"
             >
               <span className="flex h-2 w-2 rounded-full bg-status-free animate-pulse" />
               <span>Curated Discovery Platform • Everything 100% Free</span>
@@ -155,6 +144,16 @@ export default function Hero({ searchQuery, setSearchQuery, onSelectTask }: Hero
               ))}
             </div>
           </div>
+
+          {/* Right Column: Giant 3D Purple Particle Sphere (Desktop right column only) */}
+          <motion.div
+            initial={{ opacity: 0, scale: 0.9 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.8, delay: 0.15 }}
+            className="hidden lg:flex lg:col-span-6 w-full items-center justify-center overflow-visible"
+          >
+            <CasberryParticles />
+          </motion.div>
         </div>
       </div>
     </section>
