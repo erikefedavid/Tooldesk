@@ -45,14 +45,14 @@ export default function Hero({ searchQuery, setSearchQuery, onSelectTask }: Hero
   }, []);
 
   return (
-    <section className="relative overflow-hidden pt-2 sm:pt-6 lg:pt-8 pb-8 sm:pb-8 lg:pb-12 min-h-[80vh] md:min-h-0 flex items-start md:items-center justify-center">
+    <section className="relative overflow-hidden pt-6 sm:pt-6 lg:pt-8 pb-2 sm:pb-8 lg:pb-12 flex items-center justify-center">
       {/* Background ambient lighting glow */}
       <div className="pointer-events-none absolute inset-0 -z-10 flex items-center justify-center">
         <div className="h-[380px] w-[380px] sm:h-[550px] sm:w-[550px] rounded-full bg-brand/12 blur-3xl" />
       </div>
 
       {/* Aligned 1:1 with Navbar, Category Pills, and Catalog (max-w-7xl px-4 sm:px-6 lg:px-8) */}
-      <div className="mx-auto max-w-7xl w-full px-4 sm:px-6 lg:px-8 flex-1 flex flex-col justify-start md:justify-center pt-4 sm:pt-0">
+      <div className="mx-auto max-w-7xl w-full px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-12 items-center">
           {/* Text Column: Left on Mobile, Centered on Tablet, Left on Desktop (lg:col-span-6) */}
           <div className="lg:col-span-6 flex flex-col justify-center items-start text-left md:items-center md:text-center lg:items-start lg:text-left z-10 py-1 sm:py-3 w-full max-w-2xl md:mx-auto lg:max-w-none lg:mx-0">
@@ -72,12 +72,11 @@ export default function Hero({ searchQuery, setSearchQuery, onSelectTask }: Hero
               initial={{ opacity: 0, y: 15 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.1 }}
-              className="font-heading text-[35px] sm:text-5xl md:text-5xl lg:text-6xl xl:text-[68px] font-extrabold tracking-tight text-foreground leading-[1.1] md:leading-[1.08]"
+              className="font-heading text-4xl sm:text-5xl md:text-5xl lg:text-6xl xl:text-[68px] font-extrabold tracking-tight text-foreground leading-[1.1] md:leading-[1.08]"
             >
-              {/* On mobile: 3 lines */}
+              {/* On mobile: 2 lines */}
               <span className="md:hidden">
-                Finding the <br />
-                right tool <br />
+                Finding the right tool <br />
                 <span className="text-brand">for the job.</span>
               </span>
               {/* On tablet and laptop: original heading */}
