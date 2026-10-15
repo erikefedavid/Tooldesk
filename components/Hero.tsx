@@ -45,14 +45,14 @@ export default function Hero({ searchQuery, setSearchQuery, onSelectTask }: Hero
   }, []);
 
   return (
-    <section className="relative overflow-hidden pt-4 sm:pt-6 lg:pt-8 pb-8 lg:pb-12 flex items-center justify-center">
+    <section className="relative overflow-hidden pt-3 sm:pt-6 lg:pt-8 pb-6 sm:pb-8 lg:pb-12 min-h-[80vh] md:min-h-0 flex items-center justify-center">
       {/* Background ambient lighting glow */}
       <div className="pointer-events-none absolute inset-0 -z-10 flex items-center justify-center">
-        <div className="h-[550px] w-[550px] rounded-full bg-brand/12 blur-3xl" />
+        <div className="h-[380px] w-[380px] sm:h-[550px] sm:w-[550px] rounded-full bg-brand/12 blur-3xl" />
       </div>
 
       {/* Aligned 1:1 with Navbar, Category Pills, and Catalog (max-w-7xl px-4 sm:px-6 lg:px-8) */}
-      <div className="mx-auto max-w-7xl w-full px-4 sm:px-6 lg:px-8">
+      <div className="mx-auto max-w-7xl w-full px-4 sm:px-6 lg:px-8 flex-1 flex flex-col justify-center">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-12 items-center">
           {/* Text Column: Left on Mobile, Centered on Tablet, Left on Desktop (lg:col-span-6) */}
           <div className="lg:col-span-6 flex flex-col justify-center items-start text-left md:items-center md:text-center lg:items-start lg:text-left z-10 py-1 sm:py-3 w-full max-w-2xl md:mx-auto lg:max-w-none lg:mx-0">
@@ -72,10 +72,18 @@ export default function Hero({ searchQuery, setSearchQuery, onSelectTask }: Hero
               initial={{ opacity: 0, y: 15 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.1 }}
-              className="font-heading text-4xl sm:text-5xl md:text-5xl lg:text-6xl xl:text-[68px] font-extrabold tracking-tight text-foreground leading-[1.08]"
+              className="font-heading text-[35px] sm:text-5xl md:text-5xl lg:text-6xl xl:text-[68px] font-extrabold tracking-tight text-foreground leading-[1.1] md:leading-[1.08]"
             >
-              Find the right tool <br />
-              <span className="text-brand">for the job.</span>
+              {/* On mobile: 'Finding the right tool for the job.' */}
+              <span className="md:hidden">
+                Finding the right tool <br />
+                <span className="text-brand">for the job.</span>
+              </span>
+              {/* On tablet and laptop: original heading */}
+              <span className="hidden md:inline">
+                Find the right tool <br />
+                <span className="text-brand">for the job.</span>
+              </span>
             </motion.h1>
 
             {/* Supporting Copy */}
@@ -83,7 +91,7 @@ export default function Hero({ searchQuery, setSearchQuery, onSelectTask }: Hero
               initial={{ opacity: 0, y: 15 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.2 }}
-              className="mt-3 sm:mt-5 max-w-xl text-sm sm:text-base md:text-lg lg:text-xl text-muted leading-relaxed mx-0 md:mx-auto lg:mx-0"
+              className="mt-2.5 sm:mt-5 max-w-xl text-sm sm:text-base md:text-lg lg:text-xl text-muted leading-relaxed mx-0 md:mx-auto lg:mx-0"
             >
               Discover hidden AI tools, creative software, and developer cheat codes — without popups, paywalls, or fake trials.
             </motion.p>
@@ -93,7 +101,7 @@ export default function Hero({ searchQuery, setSearchQuery, onSelectTask }: Hero
               initial={{ opacity: 0, scale: 0.98 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ duration: 0.5, delay: 0.25 }}
-              className="relative mt-6 sm:mt-8 w-full max-w-md sm:max-w-lg lg:max-w-xl mx-0 md:mx-auto lg:mx-0"
+              className="relative mt-4 sm:mt-8 w-full max-w-md sm:max-w-lg lg:max-w-xl mx-0 md:mx-auto lg:mx-0"
             >
               <div className="group relative rounded-2xl border border-border bg-surface shadow-md transition-all focus-within:border-brand focus-within:ring-4 focus-within:ring-brand/15 hover:border-border/80 text-left">
                 <div className="flex items-center px-4 py-3 sm:py-3.5 lg:py-4">
@@ -124,19 +132,21 @@ export default function Hero({ searchQuery, setSearchQuery, onSelectTask }: Hero
               </div>
             </motion.div>
 
-            {/* Floating Quick Task Nodes */}
-            <div className="mt-5 sm:mt-6 flex flex-wrap items-center justify-start md:justify-center lg:justify-start gap-2 pt-1">
+            {/* Floating Quick Task Nodes (Reduced to 2 on mobile to prevent choking) */}
+            <div className="mt-3.5 sm:mt-6 flex flex-wrap items-center justify-start md:justify-center lg:justify-start gap-1.5 sm:gap-2 pt-1">
               <span className="text-xs font-semibold text-muted flex items-center gap-1.5 mr-1">
                 <Wand2 className="h-3.5 w-3.5 text-brand" />
                 <span>Popular:</span>
               </span>
-              {FLOATING_TASKS.map((task) => (
+              {FLOATING_TASKS.map((task, idx) => (
                 <motion.button
                   key={task.text}
                   whileHover={{ scale: 1.04, y: -2 }}
                   whileTap={{ scale: 0.98 }}
                   onClick={() => onSelectTask(task.text)}
-                  className="inline-flex items-center gap-1.5 rounded-full border border-border bg-surface px-3 py-1 sm:px-3.5 sm:py-1.5 text-xs font-medium text-foreground transition-all hover:border-brand hover:bg-surface-hover hover:text-brand shadow-2xs cursor-pointer"
+                  className={`items-center gap-1.5 rounded-full border border-border bg-surface px-2.5 py-1 sm:px-3.5 sm:py-1.5 text-[11px] sm:text-xs font-medium text-foreground transition-all hover:border-brand hover:bg-surface-hover hover:text-brand shadow-2xs cursor-pointer ${
+                    idx >= 2 ? "hidden sm:inline-flex" : "inline-flex"
+                  }`}
                 >
                   <span>{task.text}</span>
                   <ArrowRight className="h-3 w-3 opacity-50" />

@@ -283,6 +283,7 @@ export default function Home() {
 
       {/* Category Pills Bar (Always visible with horizontal scroll & reveal controls) */}
       <motion.div
+        id="categories-section"
         initial={{ opacity: 0, y: 20 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, margin: "-30px" }}
