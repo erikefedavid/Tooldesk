@@ -27,15 +27,15 @@ export default function CasberryParticles() {
     renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
     container.appendChild(renderer.domElement);
 
-    // Particle Swarm Configuration: 18,000 points forming a colossal, dense purple sphere
-    const count = 18000;
-    const geometry = new THREE.TetrahedronGeometry(0.42);
+    // Particle Swarm Configuration: 20,000 points forming a colossal, dense purple sphere
+    const count = 20000;
+    const geometry = new THREE.TetrahedronGeometry(0.24);
 
-    // Primary brand purple material - vibrant and luminous
+    // Primary brand purple material
     const material = new THREE.MeshBasicMaterial({
-      color: 0x7c72ff,
+      color: 0x635bff,
       transparent: true,
-      opacity: 0.95,
+      opacity: 0.92,
     });
 
     const instancedMesh = new THREE.InstancedMesh(geometry, material, count);
@@ -46,7 +46,7 @@ export default function CasberryParticles() {
     const positions: THREE.Vector3[] = [];
     const targets: THREE.Vector3[] = [];
 
-    // Distinct shades of ToolDeck Brand Purple (#635BFF) with bright star highlights
+    // Distinct shades of ToolDeck Brand Purple (#635BFF)
     const PURPLE_PALETTE = [
       0x635bff, // Signature Brand Purple (#635BFF)
       0x7c3aed, // Vivid Violet (#7C3AED)
@@ -54,11 +54,10 @@ export default function CasberryParticles() {
       0xa855f7, // Neon Amethyst (#A855F7)
       0xc084fc, // Lavender Light (#C084FC)
       0xe0e7ff, // Starlight Highlight (#E0E7FF)
-      0xffffff, // Pure white diamond shimmer
     ];
 
-    // Expanded sphere radius for massive viewport presence
-    const SPHERE_RADIUS = 36;
+    // Expanded sphere radius
+    const SPHERE_RADIUS = 38;
 
     for (let i = 0; i < count; i++) {
       // Random starting position for smooth convergence
@@ -90,21 +89,21 @@ export default function CasberryParticles() {
     instancedMesh.instanceColor!.needsUpdate = true;
     scene.add(instancedMesh);
 
-    // Dynamic Camera Distance calculation so the sphere fills viewport with high visual impact
+    // Dynamic Camera Distance calculation: sphere fills view smoothly without clipping on mobile or desktop
     const adjustCamera = () => {
       if (!container) return;
-      const w = container.clientWidth || (typeof window !== "undefined" ? window.innerWidth : 600);
-      const h = container.clientHeight || (typeof window !== "undefined" ? window.innerHeight : 700);
+      const w = container.clientWidth || 600;
+      const h = container.clientHeight || 700;
       const aspect = w / h;
       camera.aspect = aspect;
 
       const fovRad = THREE.MathUtils.degToRad(camera.fov);
-      const targetHalfHeight = SPHERE_RADIUS * 1.1;
+      // Half-height of the sphere with breathing margin
+      const targetHalfHeight = SPHERE_RADIUS * 1.14;
       const dist = targetHalfHeight / Math.tan(fovRad / 2);
 
-      // On mobile / portrait, never push the camera so far that the sphere disappears
       if (aspect < 1) {
-        camera.position.z = Math.min(dist * 1.25, 96);
+        camera.position.z = dist / aspect;
       } else {
         camera.position.z = dist;
       }
@@ -115,7 +114,7 @@ export default function CasberryParticles() {
 
     adjustCamera();
 
-    // Mouse tracking for reactive interaction
+    // Mouse and Touch tracking for reactive interaction across desktop and mobile
     let mouseX = 0;
     let mouseY = 0;
     let targetRotationX = 0;
@@ -129,7 +128,19 @@ export default function CasberryParticles() {
       mouseY = y * 2;
     };
 
+    const handleTouchMove = (event: TouchEvent) => {
+      if (event.touches.length > 0) {
+        const touch = event.touches[0];
+        const rect = container.getBoundingClientRect();
+        const x = (touch.clientX - rect.left) / rect.width - 0.5;
+        const y = (touch.clientY - rect.top) / rect.height - 0.5;
+        mouseX = x * 2;
+        mouseY = y * 2;
+      }
+    };
+
     window.addEventListener("mousemove", handleMouseMove);
+    window.addEventListener("touchmove", handleTouchMove, { passive: true });
     window.addEventListener("resize", adjustCamera);
 
     // Reusable vector to eliminate garbage collection stutters
@@ -139,11 +150,11 @@ export default function CasberryParticles() {
     let isVisible = true;
 
     const animate = () => {
-      if (!isVisible) return; // Halt loop when scrolled off-screen to save 100% GPU!
+      if (!isVisible) return; // Auto pause when scrolled away
       animationFrameId = requestAnimationFrame(animate);
       const time = clock.getElapsedTime();
 
-      // Smooth continuous orbit + mouse tilt
+      // Smooth continuous orbit + mouse/touch tilt
       targetRotationY += 0.0028;
       instancedMesh.rotation.y = THREE.MathUtils.lerp(
         instancedMesh.rotation.y,
@@ -172,7 +183,7 @@ export default function CasberryParticles() {
       renderer.render(scene, camera);
     };
 
-    // Auto-pause Three.js GPU rendering when user scrolls down to cards!
+    // Auto-pause Three.js GPU rendering when user scrolls down to cards
     const observer = new IntersectionObserver(
       ([entry]) => {
         isVisible = entry.isIntersecting;
@@ -193,6 +204,7 @@ export default function CasberryParticles() {
       observer.disconnect();
       cancelAnimationFrame(animationFrameId);
       window.removeEventListener("mousemove", handleMouseMove);
+      window.removeEventListener("touchmove", handleTouchMove);
       window.removeEventListener("resize", adjustCamera);
       if (container.contains(renderer.domElement)) {
         container.removeChild(renderer.domElement);
@@ -204,14 +216,14 @@ export default function CasberryParticles() {
   }, []);
 
   return (
-    <div className="relative w-full h-full min-h-[460px] sm:min-h-[520px] flex items-center justify-center select-none pointer-events-none">
+    <div className="relative w-full h-[175px] sm:h-[220px] lg:h-[680px] xl:h-[740px] flex items-center justify-center select-none pointer-events-auto">
       {/* Soft brand purple radial aura */}
-      <div className="pointer-events-none absolute inset-0 bg-radial from-brand/30 via-brand/10 to-transparent blur-3xl -z-10" />
+      <div className="pointer-events-none absolute -inset-6 sm:-inset-10 bg-radial from-brand/22 via-brand/6 to-transparent blur-2xl sm:blur-3xl -z-10" />
 
       {/* Pure Three.js Canvas */}
       <div
         ref={mountRef}
-        className="w-full h-full flex items-center justify-center pointer-events-none"
+        className="w-full h-full cursor-grab active:cursor-grabbing flex items-center justify-center"
       />
     </div>
   );

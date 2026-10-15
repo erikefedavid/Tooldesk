@@ -2,14 +2,14 @@
 
 import { useRef, useEffect } from "react";
 import dynamic from "next/dynamic";
-import { Search, X, Wand2, ArrowRight, ChevronDown } from "lucide-react";
+import { Search, X, Wand2, ArrowRight } from "lucide-react";
 import { motion } from "framer-motion";
 
 // Dynamically import 3D Particle Swarm with ssr: false
 const CasberryParticles = dynamic(() => import("./CasberryParticles"), {
   ssr: false,
   loading: () => (
-    <div className="w-full h-[460px] sm:h-[540px] lg:h-[70vh] flex items-center justify-center" />
+    <div className="w-full h-[175px] sm:h-[220px] lg:h-[680px] xl:h-[740px] flex items-center justify-center" />
   ),
 });
 
@@ -45,126 +45,117 @@ export default function Hero({ searchQuery, setSearchQuery, onSelectTask }: Hero
   }, []);
 
   return (
-    <section className="relative overflow-hidden min-h-[calc(100svh-4.5rem)] sm:min-h-[74vh] flex flex-col items-center justify-center pt-4 pb-8 sm:pt-10 sm:pb-14">
+    <section className="relative overflow-hidden pt-4 sm:pt-6 lg:pt-8 pb-8 lg:pb-12 flex items-center justify-center">
       {/* Background ambient lighting glow */}
-      <div className="pointer-events-none absolute inset-0 -z-20 flex items-center justify-center">
-        <div className="h-[450px] w-[450px] rounded-full bg-brand/12 blur-3xl" />
+      <div className="pointer-events-none absolute inset-0 -z-10 flex items-center justify-center">
+        <div className="h-[550px] w-[550px] rounded-full bg-brand/12 blur-3xl" />
       </div>
 
-      {/* 3D Sphere Object: Clearly visible glowing purple particle sphere layered right behind the hero text */}
-      <div className="absolute inset-0 -z-10 flex items-center justify-center pointer-events-none overflow-hidden select-none opacity-80 sm:opacity-85 dark:opacity-95">
-        <div className="w-full h-[500px] sm:h-[580px] lg:h-[680px] max-w-5xl flex items-center justify-center">
-          <CasberryParticles />
-        </div>
-      </div>
+      {/* Aligned 1:1 with Navbar, Category Pills, and Catalog (max-w-7xl px-4 sm:px-6 lg:px-8) */}
+      <div className="mx-auto max-w-7xl w-full px-4 sm:px-6 lg:px-8">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-12 items-center">
+          {/* Mobile: 3D Orb appears first (order-1) as a compact brand emblem.
+              Desktop: Giant 3D Purple Particle Sphere in right column (order-2 lg:col-span-6) */}
+          <motion.div
+            initial={{ opacity: 0, scale: 0.9 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.8, delay: 0.15 }}
+            className="order-1 lg:order-2 lg:col-span-6 w-full flex items-center justify-center overflow-visible"
+          >
+            <CasberryParticles />
+          </motion.div>
 
-      {/* Centered Main Content Container */}
-      <div className="mx-auto max-w-4xl w-full px-4 sm:px-6 lg:px-8 text-center flex flex-col items-center justify-center z-10 flex-1">
-        {/* Hero Headline (Centered) */}
-        <motion.h1
-          initial={{ opacity: 0, y: 15 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
-          className="font-heading text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-extrabold tracking-tight text-foreground leading-[1.12]"
-        >
-          Find the right tool{" "}
-          <span className="text-brand block sm:inline">for the job.</span>
-        </motion.h1>
+          {/* Left Column (Desktop) / Second (Mobile): Headlines & Task Search (order-2 lg:order-1) */}
+          <div className="order-2 lg:order-1 lg:col-span-6 flex flex-col justify-center text-left z-10 py-1 sm:py-3">
+            {/* Working Tagline Badge */}
+            <motion.div
+              initial={{ opacity: 0, y: -10 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5 }}
+              className="inline-flex items-center gap-2 rounded-full border border-border bg-surface px-3.5 py-1.5 text-xs font-semibold text-muted shadow-2xs backdrop-blur-sm mb-4 sm:mb-6 w-fit"
+            >
+              <span className="flex h-2 w-2 rounded-full bg-status-free animate-pulse" />
+              <span>Curated Discovery Platform • Everything 100% Free</span>
+            </motion.div>
 
-        {/* Supporting Subtext Under (Centered) */}
-        <motion.p
-          initial={{ opacity: 0, y: 15 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.1 }}
-          className="mt-4 sm:mt-5 max-w-xl text-sm sm:text-base md:text-lg text-muted leading-relaxed"
-        >
-          Discover hidden AI tools, creative software, and developer cheat codes — without popups, paywalls, or fake trials.
-        </motion.p>
+            {/* Hero Headline */}
+            <motion.h1
+              initial={{ opacity: 0, y: 15 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.1 }}
+              className="font-heading text-3xl sm:text-5xl lg:text-6xl xl:text-[68px] font-extrabold tracking-tight text-foreground leading-[1.08]"
+            >
+              Find the right tool <br />
+              <span className="text-brand">for the job.</span>
+            </motion.h1>
 
-        {/* Cute Small Search Bar (Centered, compact) */}
-        <motion.div
-          initial={{ opacity: 0, scale: 0.98 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 0.5, delay: 0.2 }}
-          className="relative mt-7 w-full max-w-md sm:max-w-lg"
-        >
-          <div className="group relative rounded-2xl border border-border/80 bg-surface/90 backdrop-blur-md shadow-lg shadow-black/5 transition-all focus-within:border-brand focus-within:ring-4 focus-within:ring-brand/15 hover:border-brand/40">
-            <div className="flex items-center px-4 py-2.5 sm:py-3">
-              <Search className="h-4 w-4 text-muted transition-colors group-focus-within:text-brand shrink-0" />
-              <input
-                ref={inputRef}
-                type="text"
-                value={searchQuery}
-                onChange={(e) => setSearchQuery(e.target.value)}
-                placeholder="Search 100+ free tools or describe your task..."
-                className="w-full bg-transparent px-3 text-xs sm:text-sm text-foreground placeholder:text-muted/70 focus:outline-none"
-              />
-              {searchQuery ? (
-                <button
-                  type="button"
-                  onClick={() => setSearchQuery("")}
-                  className="rounded-lg p-1 text-muted hover:bg-surface-hover hover:text-foreground cursor-pointer"
-                >
-                  <X className="h-4 w-4" />
-                </button>
-              ) : (
-                <div className="hidden items-center gap-1 rounded-md border border-border bg-background px-2 py-0.5 text-[10px] font-mono text-muted sm:flex shrink-0">
-                  <span>⌘</span>
-                  <span>K</span>
+            {/* Supporting Copy */}
+            <motion.p
+              initial={{ opacity: 0, y: 15 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.2 }}
+              className="mt-3 sm:mt-5 max-w-xl text-sm sm:text-lg lg:text-xl text-muted leading-relaxed"
+            >
+              Discover hidden AI tools, creative software, and developer cheat codes — without popups, paywalls, or fake trials.
+            </motion.p>
+
+            {/* Primary Interaction: Task-Oriented Search Field */}
+            <motion.div
+              initial={{ opacity: 0, scale: 0.98 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 0.5, delay: 0.25 }}
+              className="relative mt-6 sm:mt-8 max-w-xl"
+            >
+              <div className="group relative rounded-2xl border border-border bg-surface shadow-md transition-all focus-within:border-brand focus-within:ring-4 focus-within:ring-brand/15 hover:border-border/80">
+                <div className="flex items-center px-4 py-3 sm:py-3.5 lg:py-4">
+                  <Search className="h-5 w-5 text-muted transition-colors group-focus-within:text-brand shrink-0" />
+                  <input
+                    ref={inputRef}
+                    type="text"
+                    value={searchQuery}
+                    onChange={(e) => setSearchQuery(e.target.value)}
+                    placeholder="Describe your task (e.g. download video, remove bg, merge pdf)..."
+                    className="w-full bg-transparent px-3 text-sm sm:text-base text-foreground placeholder:text-muted/70 focus:outline-none"
+                  />
+                  {searchQuery ? (
+                    <button
+                      type="button"
+                      onClick={() => setSearchQuery("")}
+                      className="rounded-lg p-1 text-muted hover:bg-surface-hover hover:text-foreground cursor-pointer"
+                    >
+                      <X className="h-4 w-4" />
+                    </button>
+                  ) : (
+                    <div className="hidden items-center gap-1 rounded-md border border-border bg-background px-2.5 py-1 text-[11px] font-mono text-muted sm:flex shrink-0">
+                      <span>⌘</span>
+                      <span>K</span>
+                    </div>
+                  )}
                 </div>
-              )}
+              </div>
+            </motion.div>
+
+            {/* Floating Quick Task Nodes */}
+            <div className="mt-5 sm:mt-6 flex flex-wrap items-center gap-2 pt-1">
+              <span className="text-xs font-semibold text-muted flex items-center gap-1.5 mr-1">
+                <Wand2 className="h-3.5 w-3.5 text-brand" />
+                <span>Popular:</span>
+              </span>
+              {FLOATING_TASKS.map((task) => (
+                <motion.button
+                  key={task.text}
+                  whileHover={{ scale: 1.04, y: -2 }}
+                  whileTap={{ scale: 0.98 }}
+                  onClick={() => onSelectTask(task.text)}
+                  className="inline-flex items-center gap-1.5 rounded-full border border-border bg-surface px-3 py-1 sm:px-3.5 sm:py-1.5 text-xs font-medium text-foreground transition-all hover:border-brand hover:bg-surface-hover hover:text-brand shadow-2xs cursor-pointer"
+                >
+                  <span>{task.text}</span>
+                  <ArrowRight className="h-3 w-3 opacity-50" />
+                </motion.button>
+              ))}
             </div>
           </div>
-        </motion.div>
-
-        {/* Floating Quick Task Nodes (Centered - Stops cleanly here on initial screen) */}
-        <motion.div
-          initial={{ opacity: 0, y: 15 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5, delay: 0.3 }}
-          className="mt-5 flex flex-wrap items-center justify-center gap-2 max-w-2xl"
-        >
-          <span className="text-xs font-semibold text-muted flex items-center gap-1.5 mr-1">
-            <Wand2 className="h-3.5 w-3.5 text-brand" />
-            <span>Popular:</span>
-          </span>
-          {FLOATING_TASKS.map((task, i) => (
-            <motion.button
-              key={task.text}
-              initial={{ opacity: 0, scale: 0.9, y: 10 }}
-              animate={{ opacity: 1, scale: 1, y: 0 }}
-              transition={{
-                type: "spring",
-                stiffness: 260,
-                damping: 20,
-                delay: 0.35 + i * 0.05,
-              }}
-              whileHover={{ scale: 1.05, y: -2 }}
-              whileTap={{ scale: 0.96 }}
-              onClick={() => onSelectTask(task.text)}
-              className="inline-flex items-center gap-1.5 rounded-full border border-border bg-surface/90 px-3 py-1.5 text-xs font-medium text-foreground transition-all hover:border-brand hover:bg-surface-hover hover:text-brand shadow-2xs backdrop-blur-xs cursor-pointer"
-            >
-              <span>{task.text}</span>
-              <ArrowRight className="h-3 w-3 opacity-50" />
-            </motion.button>
-          ))}
-        </motion.div>
-
-        {/* Scroll Down to Reveal Categories & Tools on Next Page */}
-        <motion.button
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 0.5 }}
-          onClick={() => {
-            const el = document.getElementById("catalog-section");
-            if (el) el.scrollIntoView({ behavior: "smooth" });
-          }}
-          aria-label="Scroll down to tools"
-          className="mt-6 sm:mt-8 inline-flex flex-col items-center gap-1 text-[11px] font-semibold text-muted hover:text-brand transition-colors cursor-pointer group"
-        >
-          <span className="tracking-wide">Explore 100+ Tools Below</span>
-          <ChevronDown className="h-4 w-4 text-brand animate-bounce" />
-        </motion.button>
+        </div>
       </div>
     </section>
   );
