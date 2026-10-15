@@ -45,7 +45,7 @@ export default function Hero({ searchQuery, setSearchQuery, onSelectTask }: Hero
   }, []);
 
   return (
-    <section className="relative overflow-hidden pt-6 sm:pt-6 lg:pt-8 pb-2 sm:pb-8 lg:pb-12 flex items-center justify-center">
+    <section className="relative overflow-hidden pt-12 sm:pt-8 lg:pt-8 pb-2 sm:pb-8 lg:pb-12 flex items-center justify-center">
       {/* Background ambient lighting glow */}
       <div className="pointer-events-none absolute inset-0 -z-10 flex items-center justify-center">
         <div className="h-[380px] w-[380px] sm:h-[550px] sm:w-[550px] rounded-full bg-brand/12 blur-3xl" />
