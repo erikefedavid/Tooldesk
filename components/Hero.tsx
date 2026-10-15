@@ -54,14 +54,14 @@ export default function Hero({ searchQuery, setSearchQuery, onSelectTask }: Hero
       {/* Aligned 1:1 with Navbar, Category Pills, and Catalog (max-w-7xl px-4 sm:px-6 lg:px-8) */}
       <div className="mx-auto max-w-7xl w-full px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-12 items-center">
-          {/* Text Column: Centered on Mobile & Tablet, Left-aligned on Desktop (lg:col-span-6) */}
-          <div className="lg:col-span-6 flex flex-col justify-center items-center text-center lg:items-start lg:text-left z-10 py-1 sm:py-3 w-full max-w-2xl mx-auto lg:max-w-none lg:mx-0">
-            {/* Working Tagline Badge (Hidden on mobile, cleanly visible on md/lg) */}
+          {/* Text Column: Left on Mobile, Centered on Tablet, Left on Desktop (lg:col-span-6) */}
+          <div className="lg:col-span-6 flex flex-col justify-center items-start text-left md:items-center md:text-center lg:items-start lg:text-left z-10 py-1 sm:py-3 w-full max-w-2xl md:mx-auto lg:max-w-none lg:mx-0">
+            {/* Working Tagline Badge (Hidden on mobile, centered on tablet, left on desktop) */}
             <motion.div
               initial={{ opacity: 0, y: -10 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5 }}
-              className="hidden md:inline-flex items-center gap-2 rounded-full border border-border bg-surface px-3.5 py-1.5 text-xs font-semibold text-muted shadow-2xs backdrop-blur-sm mb-4 sm:mb-6 w-fit mx-auto lg:mx-0"
+              className="hidden md:inline-flex items-center gap-2 rounded-full border border-border bg-surface px-3.5 py-1.5 text-xs font-semibold text-muted shadow-2xs backdrop-blur-sm mb-4 sm:mb-6 w-fit md:mx-auto lg:mx-0"
             >
               <span className="flex h-2 w-2 rounded-full bg-status-free animate-pulse" />
               <span>Curated Discovery Platform • Everything 100% Free</span>
@@ -83,7 +83,7 @@ export default function Hero({ searchQuery, setSearchQuery, onSelectTask }: Hero
               initial={{ opacity: 0, y: 15 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.2 }}
-              className="mt-3 sm:mt-5 max-w-xl text-sm sm:text-base md:text-lg lg:text-xl text-muted leading-relaxed mx-auto lg:mx-0"
+              className="mt-3 sm:mt-5 max-w-xl text-sm sm:text-base md:text-lg lg:text-xl text-muted leading-relaxed mx-0 md:mx-auto lg:mx-0"
             >
               Discover hidden AI tools, creative software, and developer cheat codes — without popups, paywalls, or fake trials.
             </motion.p>
@@ -93,7 +93,7 @@ export default function Hero({ searchQuery, setSearchQuery, onSelectTask }: Hero
               initial={{ opacity: 0, scale: 0.98 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ duration: 0.5, delay: 0.25 }}
-              className="relative mt-6 sm:mt-8 w-full max-w-md sm:max-w-lg lg:max-w-xl mx-auto lg:mx-0"
+              className="relative mt-6 sm:mt-8 w-full max-w-md sm:max-w-lg lg:max-w-xl mx-0 md:mx-auto lg:mx-0"
             >
               <div className="group relative rounded-2xl border border-border bg-surface shadow-md transition-all focus-within:border-brand focus-within:ring-4 focus-within:ring-brand/15 hover:border-border/80 text-left">
                 <div className="flex items-center px-4 py-3 sm:py-3.5 lg:py-4">
@@ -125,7 +125,7 @@ export default function Hero({ searchQuery, setSearchQuery, onSelectTask }: Hero
             </motion.div>
 
             {/* Floating Quick Task Nodes */}
-            <div className="mt-5 sm:mt-6 flex flex-wrap items-center justify-center lg:justify-start gap-2 pt-1">
+            <div className="mt-5 sm:mt-6 flex flex-wrap items-center justify-start md:justify-center lg:justify-start gap-2 pt-1">
               <span className="text-xs font-semibold text-muted flex items-center gap-1.5 mr-1">
                 <Wand2 className="h-3.5 w-3.5 text-brand" />
                 <span>Popular:</span>
