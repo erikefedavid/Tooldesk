@@ -37,7 +37,7 @@ const SYNONYM_MAP: Record<string, string[]> = {
   course: ["education", "learn", "cs50", "tutorial", "curriculum", "odin"],
   learn: ["education", "course", "cs50", "tutorial", "curriculum", "odin"],
   ui: ["daisyui", "originkit", "components", "tailwind", "design", "framer"],
-  music: ["flowmusic", "audio", "song", "lyria", "sound"],
+  music: ["muted", "flowmusic", "audiomass", "audio", "song", "lyria", "sound", "vocal remover", "suno", "beat maker", "chords"],
   particle: ["particles", "casberry", "3d", "simulation", "threejs"],
   particles: ["particles", "casberry", "3d", "simulation", "threejs"],
   canvas: ["melius", "stitch", "infinite canvas", "flow"],
@@ -57,6 +57,12 @@ const SYNONYM_MAP: Record<string, string[]> = {
   books: ["annas archive", "standard ebooks", "ebooks", "textbooks", "read", "education"],
   ebooks: ["annas archive", "standard ebooks", "books", "epub", "kindle"],
   textbooks: ["annas archive", "research papers", "books", "education", "consensus"],
+  photography: ["photoskop", "camera", "aperture", "iso", "shutter", "dslr"],
+  camera: ["photoskop", "photography", "exposure triangle", "iso", "lens"],
+  theory: ["muted", "circle of fifths", "chords", "fretboard", "scales"],
+  drawing: ["animeoutline", "artcraft", "excalidraw", "sketching", "illustration"],
+  anime: ["animeoutline", "manga", "drawing tutorial", "sketching"],
+  manga: ["animeoutline", "anime drawing", "proportions", "anatomy"],
 };
 
 export default function Home() {

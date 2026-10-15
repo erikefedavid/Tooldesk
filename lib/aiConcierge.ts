@@ -196,6 +196,29 @@ const PROBLEM_RULES: ProblemRule[] = [
     paywallWarning: "College textbooks and commercial ebook stores charge $80–$250 per semester for digital editions that expire after exams.",
     cheatCodeTip: "Search Anna's Archive by ISBN, author, or title to find direct PDF and EPUB downloads without creating an account.",
   },
+  {
+    patterns: [/photo/i, /camera.*simulator/i, /learn.*photography/i, /aperture/i, /shutter.*speed/i, /iso/i, /exposure.*triangle/i, /dslr/i],
+    toolId: "photoskop",
+    reason: "Photoskop is an interactive browser-based camera mechanics simulator and photography academy. It lets you test aperture, shutter speed, ISO, depth of field, and studio lighting in real-time.",
+    paywallWarning: "Photography masterclasses and textbook bundles charge hundreds of dollars for theory that Photoskop demonstrates interactively for free.",
+    cheatCodeTip: "Use the interactive camera player to test f-stop depth of field and motion blur live before heading out on a photo shoot.",
+  },
+  {
+    patterns: [/music.*theory/i, /circle.*of.*fifths/i, /chords/i, /fretboard/i, /guitar.*scales/i, /piano.*chords/i, /learn.*music/i, /beat.*maker/i],
+    toolId: "muted-io",
+    secondaryToolId: "audiomass",
+    reason: "Muted.io is a colorful, interactive collection of visual music theory tools, virtual guitar/bass fretboards, interactive piano chord visualizers, and browser drum sequencers.",
+    paywallWarning: "Music schools and chord apps push you into monthly subscriptions just to view chord charts and scale fingerings.",
+    cheatCodeTip: "Use the interactive Circle of Fifths to discover harmonic key modulations, or map scale notes onto the virtual guitar fretboard with one click.",
+  },
+  {
+    patterns: [/draw.*anime/i, /draw.*manga/i, /anime.*eyes/i, /manga.*tutorial/i, /sketch.*anime/i, /anime.*proportions/i, /how.*to.*draw/i],
+    toolId: "animeoutline",
+    secondaryToolId: "artcraft",
+    reason: "AnimeOutline provides clean, step-by-step manga illustration guides breaking down facial features, eye expressions, hair styling, and body proportions line by line.",
+    paywallWarning: "Art academy platforms lock step-by-step anatomy references behind monthly Patreon or course paywalls.",
+    cheatCodeTip: "Follow the initial construction lines and head proportion guidelines first before adding hair or fine detail.",
+  },
 ];
 
 /**
