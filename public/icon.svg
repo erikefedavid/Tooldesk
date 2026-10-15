@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" fill="none">
+  <!-- Brand Purple Rounded Squircle Background -->
+  <rect width="64" height="64" rx="16" fill="#635BFF"/>
+  
+  <!-- Subtle Inner Radial Glow for Vibrancy -->
+  <defs>
+    <radialGradient id="deckGlow" cx="30%" cy="25%" r="80%">
+      <stop offset="0%" stop-color="#7C72FF"/>
+      <stop offset="100%" stop-color="#4F46E5"/>
+    </radialGradient>
+  </defs>
+  <rect width="64" height="64" rx="16" fill="url(#deckGlow)"/>
+
+  <!-- Centered White Stacked Deck / Layers Icon -->
+  <g transform="translate(13, 13) scale(1.58)" stroke="#FFFFFF" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" fill="none">
+    <path d="M12.83 2.18a2 2 0 0 0-1.66 0L2.6 6.08a1 1 0 0 0 0 1.83l8.58 3.91a2 2 0 0 0 1.66 0l8.58-3.9a1 1 0 0 0 0-1.83z"/>
+    <path d="M2 12a1 1 0 0 0 .58.91l8.6 3.91a2 2 0 0 0 1.65 0l8.58-3.9A1 1 0 0 0 22 12"/>
+    <path d="M2 17a1 1 0 0 0 .58.91l8.6 3.91a2 2 0 0 0 1.65 0l8.58-3.9A1 1 0 0 0 22 17"/>
+  </g>
+
+  <!-- Emerald Free Status Dot with Brand Purple Ring -->
+  <circle cx="50" cy="50" r="7.5" fill="#10B981" stroke="#4F46E5" stroke-width="3.5"/>
+</svg>

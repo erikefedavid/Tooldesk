@@ -17,6 +17,15 @@ const spaceGrotesk = Space_Grotesk({
 export const metadata: Metadata = {
   title: "ToolDeck — Find a tool. Get the job done.",
   description: "A curated discovery platform for free AI tools, creative software, and developer utilities.",
+  icons: {
+    icon: [
+      { url: "/icon.svg", type: "image/svg+xml" },
+      { url: "/favicon.ico" }
+    ],
+    apple: [
+      { url: "/icon.svg", type: "image/svg+xml" }
+    ],
+  },
 };
 
 export default function RootLayout({
