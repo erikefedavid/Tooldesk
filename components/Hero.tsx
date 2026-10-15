@@ -72,9 +72,9 @@ export default function Hero({ searchQuery, setSearchQuery, onSelectTask }: Hero
               initial={{ opacity: 0, y: 15 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.1 }}
-              className="font-heading text-3xl sm:text-5xl md:text-5xl lg:text-6xl xl:text-[68px] font-extrabold tracking-tight text-foreground leading-[1.08]"
+              className="font-heading text-4xl sm:text-5xl md:text-5xl lg:text-6xl xl:text-[68px] font-extrabold tracking-tight text-foreground leading-[1.08]"
             >
-              Find the right tool <br className="hidden sm:inline" />
+              Find the right tool <br />
               <span className="text-brand">for the job.</span>
             </motion.h1>
 
